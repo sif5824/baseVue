@@ -2,7 +2,7 @@ import axios from 'axios'
 import {
     Message
 } from 'element-ui'
-import Config from ''
+import Config from '../../config/webConfig'
 let _Axios = axios.create()
 _Axios.defaults.withCredentials = true // 是否携带cookie
 _Axios.defaults.timeout = 6000
@@ -24,7 +24,8 @@ let methods = {
      * @return {[type]}            [description]
      */
     get: function(url, data, callback) {
-        _Axios.get(`http://test.sifjz.com:9227` + url, {
+        let reqUrl = Config.api + url 
+        _Axios.get(reqUrl, {
                 params: data
             })
             .then((response) => {
@@ -43,7 +44,8 @@ let methods = {
             })
     },
     post: function(url, data, callback) {
-        _Axios.post(`http://test.sifjz.com:9227` + url, data, {
+        let reqUrl = Config.api + url 
+        _Axios.post(reqUrl, data, {
                 headers: {
                     'Content-Type': 'application/json; charset=UTF-8'
                     // 'token': token
@@ -66,7 +68,8 @@ let methods = {
     },
     ajaxGet: function (url, data) {
         return new Promise((resolve, reject) => {
-            _Axios.get(`http://test.sifjz.com:9227` + url, {
+            let reqUrl = Config.api + url 
+            _Axios.get(reqUrl, {
                 params: data
             })
             .then((response) => {
